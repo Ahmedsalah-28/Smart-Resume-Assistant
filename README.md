@@ -49,9 +49,12 @@ It uses **Ollama** with the **Mistral model** for local LLM tasks and **BERT-bas
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/smart-resume-assistant.git
-cd smart-resume-assistant
+git clone https://github.com/Ahmedsalah-28/Smart-Resume-Assistant.git
+cd Smart-Resume-Assistant
 ```
+
+
+
 
 ### 2. (Optional) Create a virtual environment using `conda`
 
