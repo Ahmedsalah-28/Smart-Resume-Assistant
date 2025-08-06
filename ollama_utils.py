@@ -336,63 +336,12 @@ def evaluate_mock_answers_ollama(cv_text: str, job_title: str, questions: list[s
     Returns detailed feedback per answer, scores, and final assessment.
     """
 
-    # qa_block = "\n".join(
-    #     f"Q{i+1}: {q}\nA{i+1}: {'No valid answer was provided.' if not is_valid_answer(a) else a}"
-    #     for i, (q, a) in enumerate(zip(questions, answers))
-    # )
-
 
     qa_block = ""
     for i, (q, a) in enumerate(zip(questions, answers)):
         is_valid, score = is_valid_answer(q, a)
         formatted_answer = a if is_valid else "No valid answer was provided."
         qa_block += f"Q{i+1}: {q}\nA{i+1}: {formatted_answer}\n"
-
-
-#     prompt = f"""
-# You are a senior technical recruiter and interview coach.
-
-# Your task is to deeply evaluate a candidate's mock interview based on:
-# - Their resume
-# - The job title
-# - Their answers to common interview questions
-
-# Please assess **each answer separately** based on the following criteria:
-# - Technical relevance (30%)
-# - Communication and clarity (25%)
-# - Confidence and structure (20%)
-# - Fit for the role (25%)
-
-# Then, for each question:
-# - Give a score out of 10
-# - Explain why the answer is strong or weak
-# - Suggest improvements if needed
-
-# Finally, give:
-# - A total average score
-# - A short professional summary of their overall performance
-# - A final recommendation (e.g., Strong candidate, Needs improvement, Not ready)
-# - If an answer is too short (less than 10 words) or appears irrelevant or blank, simply say "The candidate did not provide a sufficient answer" and do not try to hallucinate an evaluation.
-# - If an answer is missing, irrelevant, or too short (under 15 words), clearly state: "No valid answer was provided."
-# - Do NOT try to interpret or expand short answers. Only assess what's actually written.
-# - If the answer is valid, give honest, constructive feedback. Otherwise, flag it.
-# Only provide feedback if the answer is detailed, relevant, and clearly related to the question. 
-# If the answer is missing, meaningless, or too short (less than 15 words), respond with: "No valid answer was provided." and do not evaluate it just  respond with: "No valid answer was provided.".
-# Do NOT attempt to guess the intent behind unclear inputs like "k", "jj", or "hiuhb".
-# Only give a numerical score if the answer is meaningful, relevant, and contains more than 15 words. Otherwise, just state: "No valid answer was provided." without attempting any analysis.
-
-# Resume:
-# {cv_text}
-
-# Job Title:
-# {job_title}
-
-# Interview Responses:
-# {qa_block}
-
-# Make the response in {language.upper()}.
-# Respond clearly and professionally.
-# """
 
 
     prompt = f"""
